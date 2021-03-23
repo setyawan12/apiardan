@@ -43,7 +43,8 @@
     "tiktok-scraper": "^1.4.12",
     "urlencode": "^1.1.0",
     "ytdl-core": "^4.4.5",
-    "ytpl": "^2.0.5"
+    "ytpl": "^2.0.5",
+    "zahir-api": "^1.0.3"
   },
   "homepage": "https://github.com/Zhirrr/Zhirrr-Api#readme"
 }
