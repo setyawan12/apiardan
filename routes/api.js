@@ -1929,9 +1929,7 @@ router.get('/nyoba', async (req, res, next) => {
        var ardane = ['makan','madang','mbadog','dahar', 'nguntal'];
        var ardanee = ardane[Math.floor(Math.random() * ardane.length)];
         var result = ardanee;
-             res.json({
-                 result
-             })
+             
          })
          .catch(e => {
          	res.json('error ngab')
