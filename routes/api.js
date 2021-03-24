@@ -1919,4 +1919,23 @@ router.get('/kuis/tebakgambar', async (req, res, next) => {
 })
 
 
+router.get('/nyoba', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+            
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
+
+       var ardane = ['makan','madang','mbadog','dahar', 'nguntal'];
+       var ardanee = ardane[Math.floor(Math.random() * ardane.length)];
+        var result = ardanee;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json('error ngab')
+})
+})
+
 module.exports = router
