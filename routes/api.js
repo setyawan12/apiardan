@@ -1926,8 +1926,8 @@ router.get('/nyoba', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
 
-       var ardane = ['makan','madang','mbadog','dahar', 'nguntal'];
-       var ardanee = ardane[Math.floor(Math.random() * ardane.length)];
+       var ardane = ['makan','madang','mbadog','dahar','nguntal']
+       var ardanee = ardane[Math.floor(Math.random() * ardane.length)]
         res.json({ status : true, creator : `${creator}`, hasil : `${ardanee}`})     
          })
          .catch(e => {
