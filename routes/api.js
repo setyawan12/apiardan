@@ -1956,4 +1956,24 @@ router.get('/nyoba', async (req, res, next) => {
 })
 })
 
+router.get('/pinterest', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    search = req.query.search
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
+       fetch(encodeURI(`https://api.fdci.se/rep.php?gambar=${search}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
 module.exports = router
