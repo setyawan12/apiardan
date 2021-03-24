@@ -1920,7 +1920,7 @@ router.get('/kuis/tebakgambar', async (req, res, next) => {
 
 
 router.get('/nyoba', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
+        var apikeyInput = req.query.apikey
             
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
@@ -1929,7 +1929,7 @@ router.get('/nyoba', async (req, res, next) => {
        var ardane = ['makan','madang','mbadog','dahar','nguntal']
        var ardanee = ardane[Math.floor(Math.random() * ardane.length)]
         res.json({ status : true, creator : `${creator}`, hasil : `${ardanee}`})     
-         })
+         
          .catch(e => {
          	res.json('error ngab')
 })
