@@ -11,6 +11,10 @@ router.get('/docs', (req, res) => {
     res.sendFile(__path + '/views/docs.html')
 })
 
+router.get('/back2', (req, res) => {
+    res.sendFile(__path + '/views/back2.jpg')
+})
+
 router.get('/about', (req, res) => {
     res.sendFile(__path + '/views/about.html')
 })
