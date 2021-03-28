@@ -1978,11 +1978,11 @@ router.get('/pinterest', async (req, res, next) => {
 
 router.get('/nulis', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
-	    search = req.query.search
+	    var text = req.query.text
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
-	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter Teks"})
+	if(!text) return res.json(loghandler.nottext)
        fetch(encodeURI(`http://salism3.pythonanywhere.com/write/?text=${search}`))
         .then(response => response.json())
         .then(data => {
