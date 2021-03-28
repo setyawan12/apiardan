@@ -501,7 +501,7 @@ router.get('/base', async (req, res, next) => {
 			}
 })
 
-router.get('/nulis', async (req, res, next) => {
+router.get('/nulis1', async (req, res, next) => {
 	var text = req.query.text,
 		 apikeyInput = req.query.apikey;
 	if(!apikeyInput) return res.json(loghandler.notparam)
@@ -1964,6 +1964,26 @@ router.get('/pinterest', async (req, res, next) => {
 	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
        fetch(encodeURI(`https://api.fdci.se/rep.php?gambar=${search}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/nulis', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    search = req.query.search
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter Teks"})
+       fetch(encodeURI(`http://salism3.pythonanywhere.com/write/?text=${search}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
