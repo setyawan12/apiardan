@@ -1978,7 +1978,7 @@ router.get('/pinterest', async (req, res, next) => {
 
 router.get('/nulis', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
-	    var text = req.query.text
+	    text = req.query.text
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
