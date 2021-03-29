@@ -2006,8 +2006,14 @@ router.get('/insta/stalk', async (req, res, next) => {
        fetch(encodeURI(`https://zahirr-web.herokuapp.com/api/ig/stalk?username=${username}&apikey=zahirgans`))
         .then(response => response.json())
         .then(data => {
-        var result = data.result;
-             res.json({ status : true, creator : `${creator}`, hasil : `${result}`})    
+        var biodata = data.result.biodata;
+		var follower = data.result.Jumlah_Followers;
+		var following = data.result.Jumlah_Following;
+		var post = data.result.Jumlah_Post;
+		var nama = data.result.name;
+		var profil = data.result.Profile_pic;
+		var username = data.result.username;
+             res.json({ status : true, creator : `${creator}`, Result : { Biodata : `${biodata}`, follower : `${follower}`, Following : `${biodata}`, Jumlah_post : `${post}`, nama : `${nama}`, profil_pic : `${profil}`, username : `${username}`}})    
          })
          .catch(e => {
          	res.json(loghandler.error)
