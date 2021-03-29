@@ -1996,6 +1996,24 @@ router.get('/nulis', async (req, res, next) => {
 })
 })
 
+router.get('/insta/stalk', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    username = req.query.username
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
+	if (!username) return res.json(loghandler.notusername)
+       fetch(encodeURI(`https://zahirr-web.herokuapp.com/api/ig/stalk?username=${username}&apikey=zahirgans`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data.result;
+             res.json({creator : `${creator}`, hasil : `${result}`}) 
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
 router.get('/googleimg', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
 	    search = req.query.search
