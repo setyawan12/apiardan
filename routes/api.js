@@ -2007,7 +2007,7 @@ router.get('/insta/stalk', async (req, res, next) => {
         .then(response => response.json())
         .then(data => {
         var result = data.result;
-             res.json({creator : `${creator}`, hasil : `${result}`}) 
+             res.json({ status : true, creator : `${creator}`, hasil : `${result}`})    
          })
          .catch(e => {
          	res.json(loghandler.error)
