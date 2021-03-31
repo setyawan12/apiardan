@@ -2046,7 +2046,7 @@ router.get('/random/ptl', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://raw.githubusercontent.com/setyawan12/afs-rest/main/1/ptl.json`))
+       fetch(encodeURI(`https://raw.githubusercontent.com/setyawan12/afs-rest/main/ptl.json`))
         .then(response => response.json())
         .then(data => {
         	nimekk =  data[Math.floor(Math.random() * data.length)];
