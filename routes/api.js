@@ -2040,7 +2040,7 @@ router.get('/googleimg', async (req, res, next) => {
 })
 })
 
-router.get('/random/ptl', async (req, res, next) => {
+router.get('/fakta', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
@@ -2049,12 +2049,12 @@ router.get('/random/ptl', async (req, res, next) => {
        fetch(encodeURI(`https://raw.githubusercontent.com/VideFrelan/words/main/ptl.txt`))
         .then(response => response.json())
         .then(data => {
-        	ptll =  data[Math.floor(Math.random() * data.length)];
-        var result = ptll;
+        	nimekk =  data[Math.floor(Math.random() * data.length)];
+        var result = nimekk;
              res.json({
              	creator: `${creator}`,
-                Hasil : `${result}`
-                 
+                 result,
+                 status : 200
              })
          })
          .catch(e => {
