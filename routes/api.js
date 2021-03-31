@@ -2051,8 +2051,9 @@ router.get('/random/ptl', async (req, res, next) => {
         .then(data => {
         	ptll =  data[Math.floor(Math.random() * data.length)];
         var result = ptll;
-             res.buffer({
-                 result
+             res.json({
+             	creator: `${creator}`,
+                Hasil : `${result}`
                  
              })
          })
