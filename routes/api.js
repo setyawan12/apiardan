@@ -2049,7 +2049,7 @@ router.get('/random/ptl', async (req, res, next) => {
        fetch(encodeURI(`https://raw.githubusercontent.com/VideFrelan/words/main/ptl.txt`))
         .then(response => response.text())
         .then(body => {
-			var pptl = body.split
+			var pptl = body.split('')
         	nimekk =  pptl[Math.floor(Math.random() * pptl.length)];
         var result = nimekk;
              res.json({
