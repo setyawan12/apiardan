@@ -2040,6 +2040,26 @@ router.get('/googleimg', async (req, res, next) => {
 })
 })
 
+router.get('/random/ptl', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/VideFrelan/words/main/ptl.txt`))
+        .then(response => response.json())
+        .then(data => {
+        	ptll =  data[Math.floor(Math.random() * data.length)];
+        var result = ptll;
+             res.buffer({
+                 result
+                 
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
 
 module.exports = router
