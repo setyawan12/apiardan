@@ -1925,11 +1925,11 @@ router.get('/fakta', async (req, res, next) => {
 	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/MikuWhatsBOT/Test/main/ff.json`))
-        .then(response => response.json())
-        .then(data => {
+        .then(response => response.text())
+        .then(body => {
 			var pptl = body.split('\n')
-        	nimek =  data[Math.floor(Math.random() * data.length)];
-        var result = nimek;
+        	ptll =  pptl[Math.floor(Math.random() * pptl.length)];
+        var result = ptll;
              res.json({
              	creator: `${creator}`,
                  result,
