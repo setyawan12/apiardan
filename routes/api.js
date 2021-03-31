@@ -2040,7 +2040,7 @@ router.get('/googleimg', async (req, res, next) => {
 })
 })
 
-router.get('/fakta', async (req, res, next) => {
+router.get('/random/ptl', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
