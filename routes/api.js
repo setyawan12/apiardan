@@ -1927,6 +1927,7 @@ router.get('/fakta', async (req, res, next) => {
        fetch(encodeURI(`https://raw.githubusercontent.com/MikuWhatsBOT/Test/main/ff.json`))
         .then(response => response.json())
         .then(data => {
+			var pptl = body.split('\n')
         	nimek =  data[Math.floor(Math.random() * data.length)];
         var result = nimek;
              res.json({
