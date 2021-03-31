@@ -1925,11 +1925,10 @@ router.get('/fakta', async (req, res, next) => {
 	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/MikuWhatsBOT/Test/main/ff.json`))
-        .then(response => response.text())
-        .then(body => {
-			var pptl = body.split('\n')
-        	ptll =  pptl[Math.floor(Math.random() * pptl.length)];
-        var result = ptll;
+        .then(response => response.json())
+        .then(data => {
+        	nimek =  data[Math.floor(Math.random() * data.length)];
+        var result = nimek;
              res.json({
              	creator: `${creator}`,
                  result,
@@ -2048,9 +2047,10 @@ router.get('/random/ptl', async (req, res, next) => {
 	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/VideFrelan/words/main/ptl.txt`))
-        .then(response => response.json())
-        .then(data => {
-        	nimekk =  data[Math.floor(Math.random() * data.length)];
+        .then(response => response.text())
+        .then(body => {
+			var pptl = body.split('\n')
+        	nimekk =  pptl[Math.floor(Math.random() * pptl.length)];
         var result = nimekk;
              res.json({
              	creator: `${creator}`,
