@@ -2046,11 +2046,10 @@ router.get('/random/ptl', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://raw.githubusercontent.com/VideFrelan/words/main/ptl.txt`))
-        .then(response => response.text())
-        .then(body => {
-			var pptl = body.split('')
-        	nimekk =  pptl[Math.floor(Math.random() * pptl.length)];
+       fetch(encodeURI(`https://raw.githubusercontent.com/setyawan12/afs-rest/main/1/ptl.json`))
+        .then(response => response.json())
+        .then(data => {
+        	nimekk =  data[Math.floor(Math.random() * data.length)];
         var result = nimekk;
              res.json({
              	creator: `${creator}`,
