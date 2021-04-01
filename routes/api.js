@@ -2062,5 +2062,26 @@ router.get('/random/ptl', async (req, res, next) => {
 })
 })
 
+router.get('/random/citacita', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'free') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/setyawan12/afs-rest/main/citacita.json`))
+        .then(response => response.json())
+        .then(data => {
+        	nimekkk =  data[Math.floor(Math.random() * data.length)];
+        var result = nimekkk;
+             res.json({
+             	creator: `${creator}`,
+                 result,
+                 status : 200
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
 module.exports = router
