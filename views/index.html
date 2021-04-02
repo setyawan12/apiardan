@@ -607,8 +607,67 @@ function readCookie() {
 
 </script>
 
+<script language="JavaScript" type="text/javascript">
 
+<!--
+
+function waktuberjalansuma411() {
+  now=new Date();
+  hour=now.getHours();
+  min=now.getMinutes();
+  sec=now.getSeconds();
+
+if (min<=9) { min="0"+min; }
+if (sec<=9) { sec="0"+sec; }
+if (hour>12) { hour=hour-12; add="P.M."; }
+else { hour=hour; add="A.M."; }
+if (hour==12) { add="P.M."; }
+
+time = day + ", " + date + " - " + month + " - " + year + " | " + ((hour<=9) ? "0"+hour : hour) + ":" + min + ":" + sec + " " + add;
+if (document.getElementById) { document.getElementById('waktu-afs').innerHTML = time; }
+else if (document.layers) {
+ document.layers.waktu-afs.document.write(time);
+ document.layers.waktu-afs.document.close(); }
+
+setTimeout("waktuberjalansuma411()", 1000);
+}
+window.onload = waktuberjalansuma411;
+
+var
+month = new Array();
+month[0]="Januari";   
+month[1]="Februari";
+month[2]="Maret";
+month[3]="April";
+month[4]="Mei";
+month[5]="Juni";
+month[6]="Juli";
+month[7]="Agustus";
+month[8]="September";
+month[9]="Oktober";
+month[10]="November";
+month[11]="Desember";
+
+var
+day = new Array();
+day[0]="Minggu";
+day[1]="Senin";
+day[2]="Selasa";
+day[3]="Rabu";
+day[4]="Kamis";
+day[5]="Jum'at";
+day[6]="Sabtu";
+
+today = new Date();
+date = today.getDate();
+day = (day[today.getDay()]);
+month = (month[today.getMonth()]);
+year = (today.getFullYear());
+
+// -->
+</script>
 </head>
+
 <body>
 <center>
  <h1>Selamat Datang Di</h1>
@@ -638,6 +697,8 @@ insertCounter()
 // -->
 
 </script>
+<a id="waktu-afs"></a>
+<body onLoad="waktuberjalansuma411()" onUnload="waktuberjalansuma411()">
   </center>
 </body>
 </html>
