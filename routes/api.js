@@ -193,10 +193,7 @@ router.get('/cekapikey', async (req, res, next) => {
 			apikey: a.apikey,
 			more_info: {
 				email: a.email,
-				nomor_hp: a.nomor_hp,
 				name: a.name,
-				age: a.age,
-				country: a.country,
 				exp:a.exp,
 			},
 		},
@@ -215,32 +212,26 @@ router.get('/addapikey', (req, res, next) => {
         status = req.query.status,
         apikeyInput  = req.query.apikeyInput,
         email = req.query.email,
-        nomorhp = req.query.nomorhp
         name = req.query.name,
-        age = req.query.age,
-        country = req.query.country;
         exp = req.query.exp;
 
     if (!apikey) return res.json(loghandler.notparam)
-    if (!(status && apikeyInput && email && nomorhp && name && age && country && exp)) return res.json(loghandler.notAddApiKey)
-    if (apikey != 'ardangans') return res.json(loghandler.invalidKey)
+    if (!(status && apikeyInput && email && name && exp)) return res.json(loghandler.notAddApiKey)
+    if (apikey != 'ardanjangkrik') return res.json(loghandler.invalidKey)
 
     try {
         zahirr.insert({
         	status: status,
             apikey: apikeyInput,
             email: email,
-            nomor_hp: nomorhp,
             name: name,
-            age: age,
-            country: country,
             exp: exp
         })
         .then(() => {
               res.json({
                   status: true,
                   creator: `${creator}`,
-                  result: 'berhasil menambah data, status : ' + status + ', apikey : ' + apikeyInput + ', email : ' + email + ', nomor_hp : ' + nomorhp + ', name :  ' + name + ', age : ' + age + ', country : ' + country + ', exp : ' + exp
+                  result: 'berhasil menambah data, status : ' + status + ', apikey : ' + apikeyInput + ', email : ' + email + ', name :  ' + name + ', exp : ' + exp
               })
         })
     } catch (e) {
@@ -254,10 +245,7 @@ router.get('/remove', (req, res, next) => {
         status = req.query.status,
         apikeyInput  = req.query.apikeyInput,
         email = req.query.email,
-        nomorhp = req.query.nomorhp
         name = req.query.name,
-        age = req.query.age,
-        country = req.query.country;
         exp = req.query.exp;
 
     if (!apikey) return res.json(loghandler.notparam)
@@ -269,17 +257,14 @@ router.get('/remove', (req, res, next) => {
             status: status,
             apikey: apikeyInput,
             email: email,
-            nomor_hp: nomorhp,
             name: name,
-            age: age,
-            country: country,
             exp: exp
         })
         .then(() => {
              res.json({
                   status: true,
                   creator: `${creator}`,
-                  result: 'berhasil menghapus data, status : ' + status + ', apikey : ' + apikeyInput + ', email : ' + email + ', nomor_hp : ' + nomorhp + ', name :  ' + name + ', age : ' + age + ', country : ' + country + ', exp : ' + exp
+                  result: 'berhasil menghapus data, status : ' + status + ', apikey : ' + apikeyInput + ', email : ' + email + ', name :  ' + name + ', exp : ' + exp
               })
         })
     } catch (e) {
@@ -2025,7 +2010,7 @@ router.get('/googleimg', async (req, res, next) => {
 	    search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'fajars') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'a') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
        fetch(encodeURI(`http://nzcha-apii.herokuapp.com/googleimage?q=${search}`))
         .then(response => response.json())
