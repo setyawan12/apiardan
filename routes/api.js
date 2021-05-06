@@ -2010,7 +2010,7 @@ router.get('/googleimg', async (req, res, next) => {
 	    search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'a') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
        fetch(encodeURI(`http://nzcha-apii.herokuapp.com/googleimage?q=${search}`))
         .then(response => response.json())
