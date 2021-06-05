@@ -2069,4 +2069,44 @@ router.get('/random/citacita', async (req, res, next) => {
 })
 })
 
+router.get('/playmp3', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    search = req.query.search
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'setyawan') return res.json(loghandler.invalidKey)
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
+       fetch(encodeURI(`https://api-exteam.herokuapp.com/api/yt/playmp3?query=${search}&apikey=estreia`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/playmp4', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    search = req.query.search
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'setyawan') return res.json(loghandler.invalidKey)
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
+       fetch(encodeURI(`https://api-exteam.herokuapp.com/api/yt/playmp4?query=${search}&apikey=estreia`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
 module.exports = router
