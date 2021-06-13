@@ -26,6 +26,7 @@ var router  = express.Router();
 var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var options = require(__path + '/lib/options.js');
+var { yta, ytv } = require('./../lib/utils/ytdl')
 var {
 	Nulis,
 	Vokal,
@@ -306,10 +307,10 @@ router.get('/playmp3', async (req, res, next) => {
 	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
 	
-	aramas = await yts(search);
-    aramat = aramas.all 
+	var aramas = await yts(search);
+    var aramat = aramas.all 
    	var mulaikah = aramat[0].url
-	ytdl.yta(mulaikah)
+	yta(mulaikah)
        .then(res => {
              console.log(res)
              res.json({
