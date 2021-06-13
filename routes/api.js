@@ -13,6 +13,7 @@ var creator = 'Ardan';
 
 var ytdl = require('ytdl-core');
 var ytpl = require('ytpl');
+var yts = require('yt-search');
 var secure = require('ssl-express-www');
 var cors = require('cors');
 var scrapeYt = require("scrape-yt");
@@ -30,7 +31,8 @@ var {
 	Vokal,
 	Base,
 	Searchnabi,
-    Gempa
+    Gempa,
+	ytdl
 } = require('./../lib');
 var cookie = "HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4zbLP/AlvlPJ2xBJBsykmS_;SAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;__Secure-3PAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;VISITOR_INFO1_LIVE=RgZLnZtCoPU;LOGIN_INFO=AFmmF2swRQIhAOXIXsKVou2azuz-kTsCKpbM9szRExAMUD-OwHYiuB6eAiAyPm4Ag3O9rbma7umBK-AG1zoGqyJinh4ia03csp5Nkw:QUQ3MjNmeXJ0UHFRS3dzaTNGRmlWR2FfMDRxa2NRYTFiN3lfTEdOVTc4QUlwbUI4S2dlVngxSG10N3ZqcHZwTHBKano5SkN2dDlPSkhRMUtReE42TkhYeUVWS3kyUE1jY2I1QzA1MDZBaktwd1llWU9lOWE4NWhoZV92aDkxeE9vMTNlcG1uMU9rYjhOaDZWdno2ZzN3TXl5TVNhSjNBRnJaMExrQXpoa2xzRVUteFNWZDI5S0Fn;PREF=app=desktop&f4=4000000&al=id;SID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1njBpLTOpxSfN-EaYCRSiDg.;YSC=HCowA1fmvzo;__Secure-3PSID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1dajgWzlBh9TgKapGOwuXfA.;SIDCC=AJi4QfFK0ri9fSfMjMQ4tOJNp6vOb9emETXB_nf2S05mvr2jBlmeEvlSsQSzPMuJl_V0wcbL1r8;__Secure-3PSIDCC=AJi4QfGeWHx-c4uTpU1rXCciO1p0s2fJWU07KrkZhWyD1Tqi8LyR-kHuBwHY9mViVYu1fRh2PA";
 
@@ -289,6 +291,31 @@ router.get('/tiktod', async (req, res, next) => {
                  status: true,
                  creator: `${creator}`,
                  videoNoWm: vid
+             })
+         })
+         .catch(e => {
+             res.json(loghandler.invalidlink)
+         })
+})
+
+router.get('/playmp3', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+	    search = req.query.search
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'ardangans') return res.json(loghandler.invalidKey)
+	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
+	
+	aramas = await yts(search);
+    aramat = aramas.all 
+   	var mulaikah = aramat[0].url
+	ytdl.yta(mulaikah)
+       .then(res => {
+             console.log(res)
+             res.json({
+                 status: true,
+                 creator: `${creator}`,
+                 result: dl_link
              })
          })
          .catch(e => {
@@ -2069,25 +2096,11 @@ router.get('/random/citacita', async (req, res, next) => {
 })
 })
 
-router.get('/playmp3', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-	    search = req.query.search
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'setyawan') return res.json(loghandler.invalidKey)
-	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
-       fetch(encodeURI(`https://api-exteam.herokuapp.com/api/yt/playmp3?query=${search}&apikey=estreia`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
+
+
+
+
+
 
 router.get('/playmp4', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
