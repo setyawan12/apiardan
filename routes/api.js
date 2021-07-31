@@ -2040,7 +2040,7 @@ router.get('/googleimg', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'fajars') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
-       fetch(encodeURI(`http://nzcha-apii.herokuapp.com/googleimage?q=${search}`))
+       fetch(encodeURI(`https://api.zeks.xyz/api/gimg?apikey=ardanfajars&q=${search}`))
         .then(response => response.json())
         .then(data => {
         var result = data.result;
