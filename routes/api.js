@@ -2043,7 +2043,7 @@ router.get('/googleimg', async (req, res, next) => {
        fetch(encodeURI(`https://api.zeks.xyz/api/gimg?apikey=ardanfajars&q=${search}`))
         .then(response => response.json())
         .then(data => {
-        var result = data.result;
+        var result = data.data;
              res.json({
                  result
              })
