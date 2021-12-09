@@ -2125,15 +2125,15 @@ router.get('/playmp4', async (req, res, next) => {
 
 router.get('/tagihan', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
-	    idpelanggan = req.query.search
+	    idpelanggan = req.query.idpelanggan
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'setyawan') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'dns') return res.json(loghandler.invalidKey)
 	if(!idpelanggan) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter idpelanggan"})
        fetch(encodeURI(`https://api.lolhuman.xyz/api/tagihanlistrik/${idpelanggan}?apikey=ardanfajars`))
         .then(response => response.json())
         .then(data => {
-        var result = data;
+        var result = data,result;
              res.json({
                  result
              })
